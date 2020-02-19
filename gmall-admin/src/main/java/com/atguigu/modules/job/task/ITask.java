@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2016-2019 谷粒开源 All rights reserved.
- *
+ * <p>
  * https://www.guli.cloud
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -14,11 +14,11 @@ package com.atguigu.modules.job.task;
  * @author Mark sunlightcs@gmail.com
  */
 public interface ITask {
-
-    /**
-     * 执行定时任务接口
-     *
-     * @param params   参数，多参数使用JSON数据
-     */
-    void run(String params);
+        
+        /**
+         * 执行定时任务接口
+         *
+         * @param params 参数，多参数使用JSON数据
+         */
+        void run(String params);
 }
