@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @RefreshScope
 @EnableSwagger2
 @EnableDiscoveryClient
-@MapperScan("com.atguigu.gmall.pms.dao")
+@MapperScan("com.atguigu.gmall.sms.dao")
 public class GmallSmsApplication {
 
         public static void main(String[] args) {
