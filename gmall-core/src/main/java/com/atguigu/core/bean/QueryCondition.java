@@ -1,5 +1,6 @@
 package com.atguigu.core.bean;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -24,4 +25,7 @@ public class QueryCondition {
         
         @ApiModelProperty(name = "asc", value = "系统默认排序", required = false)
         private String asc = "asc";
+        
+        @ApiModelProperty(name = "key", value = "查询关键字", required = false)
+        private String key;
 }
