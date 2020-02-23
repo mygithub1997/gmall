@@ -7,9 +7,9 @@ import java.util.List;
 
 @Data
 public class SpuInfoVO  extends SpuInfoEntity {
-        private List<?> spuImages;
+        private List<String> spuImages;
         
-        private List<?> baseAttrs;
+        private List<BaseAttrValueVO> baseAttrs;
         
-        private List<?> skus;
+        private List<SkuInfoVO> skus;
 }
