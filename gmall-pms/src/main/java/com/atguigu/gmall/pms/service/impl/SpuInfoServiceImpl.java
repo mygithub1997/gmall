@@ -7,8 +7,9 @@ import com.atguigu.gmall.pms.entity.SpuInfoDescEntity;
 import com.atguigu.gmall.pms.feign.GmallSmsClient;
 import com.atguigu.gmall.pms.vo.BaseAttrValueVO;
 import com.atguigu.gmall.pms.vo.SkuInfoVO;
-import com.atguigu.gmall.pms.vo.SkuSaleVO;
 import com.atguigu.gmall.pms.vo.SpuInfoVO;
+import com.atguigu.gmall.sms.vo.SkuSaleVO;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                 return new PageVo(page);
         }
         
+        @GlobalTransactional
         @Override
         public void bigSave(SpuInfoVO spuInfoVO) {
                 //保存spu相关的信息(spuInfo spuInfoDesc productAttrValue)
@@ -89,7 +91,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                 spuInfoVO.setUodateTime(spuInfoVO.getCreateTime());
                 this.save(spuInfoVO);
                 Long spuId = spuInfoVO.getId();
-                
+                //int i = 1/0;
                 //1.2 保存spuInfoDesc的信息
                 List<String> spuImages = spuInfoVO.getSpuImages();
                 if (!CollectionUtils.isEmpty(spuImages)) {
@@ -156,7 +158,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                         BeanUtils.copyProperties(skuInfoVO,skuSaleVO);
                         this.smsClient.saveSkuSales(skuSaleVO);
                 });
-                
+            
         
         }
 }
