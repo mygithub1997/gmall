@@ -37,7 +37,7 @@ public class BrandController {
      * 列表
      */
     @ApiOperation("分页查询(排序)")
-    @GetMapping("/list")
+    @GetMapping("pms/brand/list")
     @PreAuthorize("hasAuthority('pms:brand:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
         PageVo page = brandService.queryPage(queryCondition);
