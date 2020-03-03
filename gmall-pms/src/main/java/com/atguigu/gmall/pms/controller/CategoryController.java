@@ -19,93 +19,95 @@ import com.atguigu.gmall.pms.entity.CategoryEntity;
 import com.atguigu.gmall.pms.service.CategoryService;
 
 
+
+
 /**
  * 商品三级分类
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 19:57:55
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 14:09:27
  */
 @Api(tags = "商品三级分类 管理")
 @RestController
 @RequestMapping("pms/category")
 public class CategoryController {
-        @Autowired
-        private CategoryService categoryService;
-        
-        @GetMapping
-        public Resp<List<CategoryEntity>> queryCategoriesByLevelOrPid(
-                @RequestParam(value = "level", defaultValue = "0") Integer level,
-                @RequestParam(value = "parentCid", required = false)Long pid) {
-                List<CategoryEntity> categoryEntities = this.categoryService.queryCategoriesByLevelOrPid(level,pid);
-                return  Resp.ok(categoryEntities);
-        }
-        
-        @GetMapping("{pid}")
-        public Resp<List<CategoryVO>> queryCategoryWithSubByPid(@PathVariable("pid")Long pid){
-                List<CategoryVO> categoryVOS = this.categoryService.queryCategoryWithSubByPid(pid);
-                return Resp.ok(categoryVOS);
-        }
-        
-        /**
-         * 列表
-         */
-        @ApiOperation("分页查询(排序)")
-        @GetMapping("/list")
-        @PreAuthorize("hasAuthority('pms:category:list')")
-        public Resp<PageVo> list(QueryCondition queryCondition) {
-                PageVo page = categoryService.queryPage(queryCondition);
-                
-                return Resp.ok(page);
-        }
-        
-        
-        /**
-         * 信息
-         */
-        @ApiOperation("详情查询")
-        @GetMapping("/info/{catId}")
-        @PreAuthorize("hasAuthority('pms:category:info')")
-        public Resp<CategoryEntity> info(@PathVariable("catId") Long catId) {
-                CategoryEntity category = categoryService.getById(catId);
-                
-                return Resp.ok(category);
-        }
-        
-        /**
-         * 保存
-         */
-        @ApiOperation("保存")
-        @PostMapping("/save")
-        @PreAuthorize("hasAuthority('pms:category:save')")
-        public Resp<Object> save(@RequestBody CategoryEntity category) {
-                categoryService.save(category);
-                
-                return Resp.ok(null);
-        }
-        
-        /**
-         * 修改
-         */
-        @ApiOperation("修改")
-        @PostMapping("/update")
-        @PreAuthorize("hasAuthority('pms:category:update')")
-        public Resp<Object> update(@RequestBody CategoryEntity category) {
-                categoryService.updateById(category);
-                
-                return Resp.ok(null);
-        }
-        
-        /**
-         * 删除
-         */
-        @ApiOperation("删除")
-        @PostMapping("/delete")
-        @PreAuthorize("hasAuthority('pms:category:delete')")
-        public Resp<Object> delete(@RequestBody Long[] catIds) {
-                categoryService.removeByIds(Arrays.asList(catIds));
-                
-                return Resp.ok(null);
-        }
-        
+    @Autowired
+    private CategoryService categoryService;
+
+    @GetMapping
+    public Resp<List<CategoryEntity>> queryCategoriesByLevelOrPid(@RequestParam(value = "level", defaultValue = "0")Integer level,
+                                                                  @RequestParam(value = "parentCid", required = false)Long pid){
+        List<CategoryEntity> categoryEntities = this.categoryService.queryCategoriesByLevelOrPid(level, pid);
+        return Resp.ok(categoryEntities);
+    }
+
+    @GetMapping("{pid}")
+    public Resp<List<CategoryVO>> queryCategoryWithSubByPid(@PathVariable("pid")Long pid){
+        List<CategoryVO> categoryVOS = this.categoryService.queryCategoryWithSubByPid(pid);
+        return Resp.ok(categoryVOS);
+    }
+
+
+    /**
+     * 列表
+     */
+    @ApiOperation("分页查询(排序)")
+    @GetMapping("/list")
+    @PreAuthorize("hasAuthority('pms:category:list')")
+    public Resp<PageVo> list(QueryCondition queryCondition) {
+        PageVo page = categoryService.queryPage(queryCondition);
+
+        return Resp.ok(page);
+    }
+
+
+    /**
+     * 信息
+     */
+    @ApiOperation("详情查询")
+    @GetMapping("/info/{catId}")
+    @PreAuthorize("hasAuthority('pms:category:info')")
+    public Resp<CategoryEntity> info(@PathVariable("catId") Long catId){
+		CategoryEntity category = categoryService.getById(catId);
+
+        return Resp.ok(category);
+    }
+
+    /**
+     * 保存
+     */
+    @ApiOperation("保存")
+    @PostMapping("/save")
+    @PreAuthorize("hasAuthority('pms:category:save')")
+    public Resp<Object> save(@RequestBody CategoryEntity category){
+		categoryService.save(category);
+
+        return Resp.ok(null);
+    }
+
+    /**
+     * 修改
+     */
+    @ApiOperation("修改")
+    @PostMapping("/update")
+    @PreAuthorize("hasAuthority('pms:category:update')")
+    public Resp<Object> update(@RequestBody CategoryEntity category){
+		categoryService.updateById(category);
+
+        return Resp.ok(null);
+    }
+
+    /**
+     * 删除
+     */
+    @ApiOperation("删除")
+    @PostMapping("/delete")
+    @PreAuthorize("hasAuthority('pms:category:delete')")
+    public Resp<Object> delete(@RequestBody Long[] catIds){
+		categoryService.removeByIds(Arrays.asList(catIds));
+
+        return Resp.ok(null);
+    }
+
 }

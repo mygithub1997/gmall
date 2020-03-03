@@ -24,9 +24,9 @@ import com.atguigu.gmall.pms.service.AttrAttrgroupRelationService;
 /**
  * 属性&属性分组关联
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 19:57:56
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 14:09:27
  */
 @Api(tags = "属性&属性分组关联 管理")
 @RestController
@@ -34,18 +34,19 @@ import com.atguigu.gmall.pms.service.AttrAttrgroupRelationService;
 public class AttrAttrgroupRelationController {
     @Autowired
     private AttrAttrgroupRelationService attrAttrgroupRelationService;
-    
+
     @PostMapping("delete/attr")
     public Resp<Object> deleteRelation(@RequestBody List<AttrAttrgroupRelationEntity> relations){
+
         relations.forEach(relationEntity -> {
             this.attrAttrgroupRelationService.remove(
                     new QueryWrapper<AttrAttrgroupRelationEntity>()
-                    .eq("attr_id",relationEntity.getAttrId())
-                    .eq("attr_group_id",relationEntity.getAttrGroupId())
+                            .eq("attr_id", relationEntity.getAttrId())
+                            .eq("attr_group_id", relationEntity.getAttrGroupId())
             );
         });
-        
-        return  Resp.ok("删除成功!");
+
+        return Resp.ok("删除成功");
     }
 
     /**

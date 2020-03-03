@@ -1,12 +1,14 @@
 package com.atguigu.gmall.sms.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.sms.vo.ItemSaleVO;
 import com.atguigu.gmall.sms.vo.SkuSaleVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,9 +25,9 @@ import com.atguigu.gmall.sms.service.SkuBoundsService;
 /**
  * 商品sku积分设置
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 21:24:17
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 15:23:31
  */
 @Api(tags = "商品sku积分设置 管理")
 @RestController
@@ -34,12 +36,19 @@ public class SkuBoundsController {
     @Autowired
     private SkuBoundsService skuBoundsService;
     
+    @GetMapping("{skuId}")
+    public Resp<List<ItemSaleVO>> queryItemSaleBySkuId(@PathVariable("skuId")Long skuId){
+        List<ItemSaleVO> itemSaleVOS = this.skuBoundsService.queryItemSaleBySkuId(skuId);
+        return Resp.ok(itemSaleVOS);
+    }
+    
+    
     @PostMapping
     public Resp<Object> saveSkuSales(@RequestBody SkuSaleVO skuSaleVO){
-        skuBoundsService.saveSkuSales(skuSaleVO);
-        return  Resp.ok(null);
+        this.skuBoundsService.saveSkuSales(skuSaleVO);
+        return Resp.ok(null);
     }
-
+    
     /**
      * 列表
      */
@@ -48,11 +57,11 @@ public class SkuBoundsController {
     @PreAuthorize("hasAuthority('sms:skubounds:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
         PageVo page = skuBoundsService.queryPage(queryCondition);
-
+        
         return Resp.ok(page);
     }
-
-
+    
+    
     /**
      * 信息
      */
@@ -60,11 +69,11 @@ public class SkuBoundsController {
     @GetMapping("/info/{id}")
     @PreAuthorize("hasAuthority('sms:skubounds:info')")
     public Resp<SkuBoundsEntity> info(@PathVariable("id") Long id){
-		SkuBoundsEntity skuBounds = skuBoundsService.getById(id);
-
+        SkuBoundsEntity skuBounds = skuBoundsService.getById(id);
+        
         return Resp.ok(skuBounds);
     }
-
+    
     /**
      * 保存
      */
@@ -72,11 +81,11 @@ public class SkuBoundsController {
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('sms:skubounds:save')")
     public Resp<Object> save(@RequestBody SkuBoundsEntity skuBounds){
-		skuBoundsService.save(skuBounds);
-
+        skuBoundsService.save(skuBounds);
+        
         return Resp.ok(null);
     }
-
+    
     /**
      * 修改
      */
@@ -84,11 +93,11 @@ public class SkuBoundsController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sms:skubounds:update')")
     public Resp<Object> update(@RequestBody SkuBoundsEntity skuBounds){
-		skuBoundsService.updateById(skuBounds);
-
+        skuBoundsService.updateById(skuBounds);
+        
         return Resp.ok(null);
     }
-
+    
     /**
      * 删除
      */
@@ -96,9 +105,9 @@ public class SkuBoundsController {
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('sms:skubounds:delete')")
     public Resp<Object> delete(@RequestBody Long[] ids){
-		skuBoundsService.removeByIds(Arrays.asList(ids));
-
+        skuBoundsService.removeByIds(Arrays.asList(ids));
+        
         return Resp.ok(null);
     }
-
+    
 }

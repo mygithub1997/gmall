@@ -6,20 +6,24 @@ import com.atguigu.gmall.pms.entity.SpuInfoEntity;
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 
+import java.io.FileNotFoundException;
+
 
 /**
  * spu信息
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 19:57:56
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 14:09:27
  */
 public interface SpuInfoService extends IService<SpuInfoEntity> {
-        
-        PageVo querySpuByCidPage(QueryCondition condition, Long cid);
-        
-        PageVo queryPage(QueryCondition params);
-        
-        void bigSave(SpuInfoVO spuInfo);
+
+    PageVo queryPage(QueryCondition params);
+
+    PageVo querySpuByCidPage(QueryCondition condition, Long cid);
+
+    void bigSave(SpuInfoVO spuInfoVO) throws FileNotFoundException;
+
+
 }
 

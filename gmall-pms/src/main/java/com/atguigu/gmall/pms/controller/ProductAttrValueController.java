@@ -23,9 +23,9 @@ import com.atguigu.gmall.pms.service.ProductAttrValueService;
 /**
  * spu属性值
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 19:57:56
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 14:09:27
  */
 @Api(tags = "spu属性值 管理")
 @RestController
@@ -33,11 +33,11 @@ import com.atguigu.gmall.pms.service.ProductAttrValueService;
 public class ProductAttrValueController {
     @Autowired
     private ProductAttrValueService productAttrValueService;
-    
+
     @GetMapping("{spuId}")
-    public Resp<List<ProductAttrValueEntity>> queryAttrValueBySpuId(@PathVariable Long spuId){
-       List<ProductAttrValueEntity> attrValueEntities =  productAttrValueService.queryAttrValueBySpuId(spuId);
-       return  Resp.ok(attrValueEntities);
+    public Resp<List<ProductAttrValueEntity>> queryAttrValueBySpuId(@PathVariable("spuId")Long spuId){
+        List<ProductAttrValueEntity> attrValueEntities = productAttrValueService.queryAttrValueBySpuId(spuId);
+        return Resp.ok(attrValueEntities);
     }
 
     /**

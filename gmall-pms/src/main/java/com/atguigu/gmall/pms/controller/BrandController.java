@@ -22,9 +22,9 @@ import com.atguigu.gmall.pms.service.BrandService;
 /**
  * 品牌
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 19:57:56
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 14:09:27
  */
 @Api(tags = "品牌 管理")
 @RestController
@@ -37,7 +37,7 @@ public class BrandController {
      * 列表
      */
     @ApiOperation("分页查询(排序)")
-    @GetMapping("pms/brand/list")
+    @GetMapping("/list")
     @PreAuthorize("hasAuthority('pms:brand:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
         PageVo page = brandService.queryPage(queryCondition);

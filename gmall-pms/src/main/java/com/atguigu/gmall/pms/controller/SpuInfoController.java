@@ -1,5 +1,6 @@
 package com.atguigu.gmall.pms.controller;
 
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +25,9 @@ import com.atguigu.gmall.pms.service.SpuInfoService;
 /**
  * spu信息
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 19:57:56
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 14:09:27
  */
 @Api(tags = "spu信息 管理")
 @RestController
@@ -34,28 +35,14 @@ import com.atguigu.gmall.pms.service.SpuInfoService;
 public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
-    
-    
-    
+
     @GetMapping
-    public Resp<PageVo> querySpuByCidPage(QueryCondition condition, @RequestParam(value = "catId",defaultValue = "0")Long cid){
-        PageVo pageVo = spuInfoService.querySpuByCidPage(condition,cid);
-        
-        return  Resp.ok(pageVo);
+    public Resp<PageVo> querySpuByCidPage(QueryCondition condition, @RequestParam(value = "catId", defaultValue = "0")Long cid){
+        PageVo pageVo = spuInfoService.querySpuByCidPage(condition, cid);
+
+        return Resp.ok(pageVo);
     }
-    
-    
-    
-    /**
-     * 列表
-     */
-    @PostMapping("/page")
-    public Resp<List<SpuInfoEntity>> querySpuPage(@RequestBody QueryCondition queryCondition) {
-        PageVo page = spuInfoService.queryPage(queryCondition);
-        
-        return Resp.ok((List<SpuInfoEntity>) page.getList());
-    }
-    
+
     /**
      * 列表
      */
@@ -66,6 +53,16 @@ public class SpuInfoController {
         PageVo page = spuInfoService.queryPage(queryCondition);
 
         return Resp.ok(page);
+    }
+
+    /**
+     * 列表
+     */
+    @PostMapping("/page")
+    public Resp<List<SpuInfoEntity>> querySpuPage(@RequestBody QueryCondition queryCondition) {
+        PageVo page = spuInfoService.queryPage(queryCondition);
+
+        return Resp.ok((List<SpuInfoEntity>)page.getList());
     }
 
 
@@ -87,8 +84,8 @@ public class SpuInfoController {
     @ApiOperation("保存")
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('pms:spuinfo:save')")
-    public Resp<Object> save(@RequestBody SpuInfoVO spuInfo){
-		spuInfoService.bigSave(spuInfo);
+    public Resp<Object> save(@RequestBody SpuInfoVO spuInfoVO) throws FileNotFoundException {
+		spuInfoService.bigSave(spuInfoVO);
 
         return Resp.ok(null);
     }

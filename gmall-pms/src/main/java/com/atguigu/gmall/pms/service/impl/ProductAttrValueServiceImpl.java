@@ -19,7 +19,7 @@ import com.atguigu.gmall.pms.service.ProductAttrValueService;
 
 @Service("productAttrValueService")
 public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao, ProductAttrValueEntity> implements ProductAttrValueService {
-    
+
     @Autowired
     private ProductAttrValueDao attrValueDao;
 
@@ -32,10 +32,10 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
 
         return new PageVo(page);
     }
-    
+
     @Override
     public List<ProductAttrValueEntity> queryAttrValueBySpuId(Long spuId) {
         return this.attrValueDao.queryAttrValueBySpuId(spuId);
     }
-    
+
 }

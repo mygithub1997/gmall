@@ -23,7 +23,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     @Autowired
     private CategoryDao categoryDao;
-    
+
     @Override
     public PageVo queryPage(QueryCondition params) {
         IPage<CategoryEntity> page = this.page(
@@ -33,23 +33,30 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
         return new PageVo(page);
     }
-    
+
     @Override
     public List<CategoryEntity> queryCategoriesByLevelOrPid(Integer level, Long pid) {
-        QueryWrapper<CategoryEntity> queryWrapper = new QueryWrapper<>();
-        if(level != 0){
-            queryWrapper.eq("cat_level",level);
+
+        QueryWrapper<CategoryEntity> wrapper = new QueryWrapper<>();
+
+        // 1.判断层级是否为0
+        if (level != 0) {
+            wrapper.eq("cat_level", level);
         }
-        if(pid != null){
-            queryWrapper.eq("parent_cid",pid);
+
+        // 2.判断pid是否为空
+        if (pid != null) {
+            wrapper.eq("parent_cid", pid);
         }
-        return this.list(queryWrapper);
+
+        return this.list(wrapper);
     }
-    
+
     @Override
     public List<CategoryVO> queryCategoryWithSubByPid(Long pid) {
-        List<CategoryVO> categoryVOS = this.categoryDao.queryCategoryWithSubByPid(pid);
+
+        List<CategoryVO> categoryVOS= this.categoryDao.queryCategoryWithSubByPid(pid);
         return categoryVOS;
     }
-    
+
 }

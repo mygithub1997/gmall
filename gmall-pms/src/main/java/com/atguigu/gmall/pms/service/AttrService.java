@@ -10,16 +10,16 @@ import com.atguigu.core.bean.QueryCondition;
 /**
  * 商品属性
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 19:57:56
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 14:09:27
  */
 public interface AttrService extends IService<AttrEntity> {
 
     PageVo queryPage(QueryCondition params);
-        
-        PageVo queryAttrsByCidOrTypePage(QueryCondition condition, Long cid, Integer type);
-    
+
+    PageVo queryAttrsByCidOrTypePage(QueryCondition condition, Long cid, Integer type);
+
     void saveAttrVO(AttrVO attr);
 }
 

@@ -22,9 +22,9 @@ import com.atguigu.gmall.pms.service.SpuImagesService;
 /**
  * spu图片
  *
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-18 19:57:56
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-18 14:09:27
  */
 @Api(tags = "spu图片 管理")
 @RestController

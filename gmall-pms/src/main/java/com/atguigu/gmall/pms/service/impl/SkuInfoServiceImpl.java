@@ -26,6 +26,5 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
 
         return new PageVo(page);
     }
-    
-    
+
 }
