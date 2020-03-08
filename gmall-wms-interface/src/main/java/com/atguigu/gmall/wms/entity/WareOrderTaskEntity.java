@@ -4,17 +4,16 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
 /**
  * 库存工作单
  * 
- * @author wangguoquan
- * @email 872448085@qq.com
- * @date 2020-02-21 22:22:41
+ * @author lixianfeng
+ * @email lxf@atguigu.com
+ * @date 2020-02-21 14:44:43
  */
 @ApiModel
 @Data

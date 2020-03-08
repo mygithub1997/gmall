@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2016-2019 谷粒开源 All rights reserved.
- * <p>
+ *
  * https://www.guli.cloud
- * <p>
+ *
  * 版权所有，侵权必究！
  */
 
@@ -21,17 +21,17 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class MybatisPlusConfig {
-        
-        /**
-         * 分页插件
-         */
-        @Bean
-        public PaginationInterceptor paginationInterceptor() {
-                return new PaginationInterceptor();
-        }
-        
-        @Bean
-        public ISqlInjector sqlInjector() {
-                return new LogicSqlInjector();
-        }
+
+    /**
+     * 分页插件
+     */
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        return new PaginationInterceptor();
+    }
+
+    @Bean
+    public ISqlInjector sqlInjector() {
+        return new LogicSqlInjector();
+    }
 }

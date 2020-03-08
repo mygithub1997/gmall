@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2016-2019 谷粒开源 All rights reserved.
- * <p>
+ *
  * https://www.guli.cloud
- * <p>
+ *
  * 版权所有，侵权必究！
  */
 
@@ -22,18 +22,18 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  */
 public interface SysRoleService extends IService<SysRoleEntity> {
-        
-        PageUtils queryPage(Map<String, Object> params);
-        
-        void saveRole(SysRoleEntity role);
-        
-        void update(SysRoleEntity role);
-        
-        void deleteBatch(Long[] roleIds);
-        
-        
-        /**
-         * 查询用户创建的角色ID列表
-         */
-        List<Long> queryRoleIdList(Long createUserId);
+
+	PageUtils queryPage(Map<String, Object> params);
+
+	void saveRole(SysRoleEntity role);
+
+	void update(SysRoleEntity role);
+
+	void deleteBatch(Long[] roleIds);
+
+	
+	/**
+	 * 查询用户创建的角色ID列表
+	 */
+	List<Long> queryRoleIdList(Long createUserId);
 }
